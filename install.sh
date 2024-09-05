@@ -1,6 +1,5 @@
 #!/bin/bash
 
-
 TARGET_DIR="/usr/local/bin"
 SCRIPT="bin/lukio"
 

@@ -19,10 +19,12 @@ usage() {
     cat <<EOF
 
 lukio (L)inux (U)nified (K)ey IO
-Usage: [-m | -u] [-c | -z | -d] <file path>
+https://github.com/FirstFlush/lukio
+A simple tool for mounting and unmounting LUKS volumes using various backends (zuluCrypt, cryptsetup, udisksctl).
 
-  -m            : Mount the volume
-  -u            : Unmount the volume
+Usage: [-m | -u] [-c | -z | -d] <file path>
+  -m            : Mount volume
+  -u            : Unmount volume
   -c            : Use cryptsetup
   -z            : Use zuluCrypt
   -d            : Use udisksctl
@@ -142,6 +144,7 @@ mount_volume() {
         zuluCrypt)
             sudo zuluCrypt-cli -o -d "$path" -m "$(basename "$path")"
             if [[ $? -eq 0 ]]; then
+                cd "/run/media/private/$USER/$(basename "$path")"
                 echo "Mounted $path using zuluCrypt."
             else
                 echo "Error: Failed to mount $path using zuluCrypt." >&2
